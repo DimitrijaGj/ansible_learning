@@ -1,0 +1,15 @@
+
+
+
+______________________________________________________________________________________
+On Cent OS 
+Apache2 called httpd
+
+needs to be started with 
+
+systemctl start httpd
+
+sudo firewall-cmd --add-port=80/tcp   *adds port 80 as opend for outside comunication
+
+
+_____________________________________________________________________________________
