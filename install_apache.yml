@@ -9,10 +9,21 @@
 
   - name: install apache2 package
     apt:
-      name: apache2
+      name:
+        -  apache2
+        - libapache2-mod-php
       state: latest
     when: ansible_distribution == "Ubuntu"
-  - name: add php support for apache
-    apt:
-      name: libapache2-mod-php
+
+  - name: update repository index for Cent OS
+    dnf: 
+      update_cache: yes
+    when: ansible_distribution_version == "CentOS"
+
+  - name: install php package for CentOS
+    dnf:
+      name:
+        - httpd
+        - php
       state: latest
+    when: ansible_distribution == "CentOS"
