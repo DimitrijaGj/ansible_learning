@@ -13,3 +13,7 @@ sudo firewall-cmd --add-port=80/tcp   *adds port 80 as opend for outside comunic
 
 
 _____________________________________________________________________________________
+
+Ansible
+
+ansible all -m module[]  gather_facts --limit [IP on server that needs to be isolated]
