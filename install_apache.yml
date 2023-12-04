@@ -7,11 +7,12 @@
       update_cache: yes
     when: ansible_distribution == "Ubuntu" 
 
-  - name: install apache2 package
+  - name: install apache2 and php  packages for Ubuntu
     apt:
       name:
         -  apache2
         - libapache2-mod-php
+
       state: latest
     when: ansible_distribution == "Ubuntu"
 
@@ -20,7 +21,7 @@
       update_cache: yes
     when: ansible_distribution_version == "CentOS"
 
-  - name: install php package for CentOS
+  - name: install apache  php packages for CentOS
     dnf:
       name:
         - httpd
