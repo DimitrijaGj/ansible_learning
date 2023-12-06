@@ -1,0 +1,43 @@
+---
+- hosts: all
+  become: true
+  
+  tasks:
+  - name: install updates (CentOS)
+    yum:
+      update_only: yes
+      update_cahce: yes
+    when: ansible_distribution == "CentOS"
+  - name: install updates (Ubuntu)
+    apt:
+      upgrade: dist
+      update_chache: yes
+    when: ansible_distribution == "Ubuntu" 
+
+
+  - name: update repository index
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu" 
+
+  - name: install apache2 and php  packages for Ubuntu
+    apt:
+      name:
+        -  apache2
+        - libapache2-mod-php
+
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: update repository index for Cent OS
+    yum: 
+      update_cache: yes
+    when: ansible_distribution_version == "CentOS"
+
+  - name: install apache  php packages for CentOS
+    yum:
+      name:
+        - httpd
+        - php
+      state: latest
+    when: ansible_distribution == "CentOS"
